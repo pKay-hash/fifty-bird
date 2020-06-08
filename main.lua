@@ -63,6 +63,7 @@ function love.load()
         ['hurt'] = love.audio.newSource('hurt.wav', 'static'),
         ['score'] = love.audio.newSource('score.wav', 'static'),
         ['pause'] = love.audio.newSource('pause.wav', 'static'),
+        ['unpause'] = love.audio.newSource('unpause.wav', 'static'),
 
         -- https://freesound.org/people/xsgianni/sounds/388079/
         ['music'] = love.audio.newSource('marios_way.mp3', 'static')

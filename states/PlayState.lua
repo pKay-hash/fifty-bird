@@ -25,15 +25,16 @@ function PlayState:update(dt)
   if love.keyboard.wasPressed('p') then
 
     if self.pause then
+      sounds['music']:resume()
       self.pause = false
       scrolling = true
-      sounds['music']:resume()
+      sounds['unpause']:play()
     else
+      sounds['music']:pause()
       self.pause = true
       scrolling = false
-      sounds['music']:pause()
+      sounds['pause']:play()
     end
-    sounds['pause']:play()
   end
 
   if not self.pause then
@@ -94,19 +95,19 @@ function PlayState:render()
 
   love.graphics.setFont(flappyFont)
   love.graphics.print('Score: ' .. tostring(self.score), 8, 8)
-  if self.score < 2 then
-    love.graphics.draw(bronze, 130, 4)
+  if self.score < 3 then
+    love.graphics.draw(bronze, VIRTUAL_WIDTH - 70, -158, 0, 0.1, 0.09)
   end
-  if self.score > 1 and self.score < 3 then
-    love.graphics.draw(silver, 130, 4)
+  if self.score > 2 and self.score < 5 then
+    love.graphics.draw(silver, VIRTUAL_WIDTH - 70, -158, 0, 0.1, 0.09)
   end
-  if self.score > 2 then
-    love.graphics.draw(gold, 130, 4)
+  if self.score > 4 then
+    love.graphics.draw(gold, VIRTUAL_WIDTH - 70, -158, 0, 0.1, 0.09)
   end
   self.bird:render()
 
   if self.pause then
-    love.graphics.draw(pause, VIRTUAL_WIDTH / 2 - (pause:getWidth() / 2), VIRTUAL_HEIGHT / 2 - (pause:getHeight() / 2))
+    love.graphics.draw(pause, VIRTUAL_WIDTH/2 - (pause:getWidth()/10), VIRTUAL_HEIGHT/2 - (pause:getHeight()/10), 0, 0.2, 0.2)
   end
 
 end
